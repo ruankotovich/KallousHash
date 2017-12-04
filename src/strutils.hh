@@ -1,8 +1,11 @@
+#include "base64_rfc4648.hpp"
+#include <fstream>
+#include <iterator>
 #include <string>
 #include <vector>
 
 namespace StringUtils {
-static std::vector<int> findLocation(std::string sample, char findIt)
+static std::vector<int> findLocation(std::string& sample, char findIt)
 {
     std::vector<int> characterLocations;
     for (int i = 0; i < sample.size(); i++)
@@ -12,7 +15,7 @@ static std::vector<int> findLocation(std::string sample, char findIt)
     return characterLocations;
 }
 
-static std::vector<std::pair<int, char>> findLocationAndNextChar(std::string sample, char findIt)
+static std::vector<std::pair<int, char>> findLocationAndNextChar(std::string& sample, char findIt)
 {
     std::vector<std::pair<int, char>> characterLocations;
     for (int i = 0; i < sample.size(); i++)
@@ -22,5 +25,11 @@ static std::vector<std::pair<int, char>> findLocationAndNextChar(std::string sam
         }
 
     return characterLocations;
+}
+
+static std::string base64_encode(std::ifstream& fileStream)
+{
+    std::vector<char> buffer((std::istreambuf_iterator<char>(fileStream)), (std::istreambuf_iterator<char>()));
+    return cppcodec::base64_rfc4648::encode(&buffer[0], buffer.size());
 }
 }
