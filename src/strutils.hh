@@ -32,4 +32,9 @@ static std::string base64_encode(std::ifstream& fileStream)
     std::vector<char> buffer((std::istreambuf_iterator<char>(fileStream)), (std::istreambuf_iterator<char>()));
     return cppcodec::base64_rfc4648::encode(&buffer[0], buffer.size());
 }
+
+static void base64_decode(std::string& base64String)
+{
+    std::string& decoding = cppcodec::base64_rfc4648::decode<std::string>(base64String, base64String.size());
+}
 }
