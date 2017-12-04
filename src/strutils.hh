@@ -1,10 +1,11 @@
 #include "base64_rfc4648.hpp"
+#include "md5.hpp"
 #include <fstream>
 #include <iterator>
 #include <string>
 #include <vector>
-
 namespace StringUtils {
+
 static std::vector<int> findLocation(std::string& sample, char findIt)
 {
     std::vector<int> characterLocations;
@@ -39,5 +40,11 @@ static void base64_decode(std::string& base64String, std::string&& filename)
     std::string decoding = cppcodec::base64_rfc4648::decode<std::string>(base64String.c_str(), base64String.size());
     outputStream << decoding;
     outputStream.close();
+}
+
+static std::string md5_sum(std::string&& filename)
+{
+    MD5 md5;
+    return std::string(md5.digestFile((char*)filename.c_str()));
 }
 }

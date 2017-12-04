@@ -8,4 +8,5 @@ int main()
     std::ifstream file("KallousHash.txt", std::ios::binary);
     std::string encode = StringUtils::base64_encode(file);
     StringUtils::base64_decode(encode, "KallousHashDecoded.txt");
+    std::cout << StringUtils::md5_sum("KallousHashDecoded.txt");
 }
