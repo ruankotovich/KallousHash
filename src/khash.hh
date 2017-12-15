@@ -202,8 +202,7 @@ public:
             auto mapIt = inverseHexMap.find(c);
             outputBase64 += mapIt != inverseHexMap.end() ? mapIt->second : c;
         }
-        std::cout << "Recovered : " << outputBase64 << std::endl;
-
+        
         StringUtils::base64_decode(outputBase64, filebase64 + "_out");
     }
 
@@ -218,12 +217,7 @@ public:
             outputBase64 += mapIt != hexMap.end() ? mapIt->second : c;
         }
 
-        std::cout << "Original  : " << fileBase64 << std::endl;
-        std::cout << "Encrypted : " << outputBase64 << std::endl;
-
         ofs << outputBase64;
         ofs.close();
-
-        recover(outputFilename, md5sum);
     }
 };
