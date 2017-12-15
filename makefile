@@ -23,6 +23,7 @@ move:
 	@echo 'then' >> $(NAME_BUILD)
 	@echo '"$(CURDIR)/$(NAME)" "e" "$${PWD}/$$2" "$${PWD}/$$3"' >> $(NAME_BUILD)
 	@echo 'elif [ "$$1" == "r" ]' >> $(NAME_BUILD)
+	@echo 'then' >> $(NAME_BUILD)
 	@echo '"$(CURDIR)/$(NAME)" "r" "$${PWD}/$$2" "$$3"' >> $(NAME_BUILD)
 	@echo 'fi' >> $(NAME_BUILD)
 	chmod +x $(NAME)
