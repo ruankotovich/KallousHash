@@ -1,0 +1,6 @@
+if [ "$1" == "e" ]
+then
+"/home/dmitry/Git/KallousHash/khash" "e" "${PWD}/$2" "${PWD}/$3"
+elif [ "$1" == "r" ]
+"/home/dmitry/Git/KallousHash/khash" "r" "${PWD}/$2" "$3"
+fi
