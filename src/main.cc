@@ -19,7 +19,7 @@ int main(int argc, char* argv[])
             std::cout << "MD5 : " << BLACK_BACK << BLUE_TEXT << kh.getMD5() << DEFAULT << std::endl;
             kh.encrypt(argv[3]);
             std::cout << GREEN_TEXT << "Successfully performed!" << DEFAULT << std::endl;
-            std::cout << GREEN_TEXT << "Khash saved in the file '" << argv[2] << "'." << DEFAULT << std::endl;
+            std::cout << GREEN_TEXT << "Khash saved in the file '" << argv[3] << "'." << DEFAULT << std::endl;
         } else if (option == "r") {
             std::string fName = argv[2];
             std::string mSum = argv[3];
