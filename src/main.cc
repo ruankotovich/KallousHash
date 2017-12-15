@@ -1,5 +1,13 @@
 #include "khash.hh"
 
+#define BLACK_TEXT "\e[30;1m"
+#define RED_TEXT "\e[31;1m"
+#define GREEN_TEXT "\e[32;1m"
+#define YELLOW_TEXT "\e[33;1m"
+#define BLUE_TEXT "\e[34;1m"
+#define BLACK_BACK "\e[40;1m"
+#define DEFAULT "\e[0m"
+
 int main(int argc, char* argv[])
 {
 
@@ -7,18 +15,19 @@ int main(int argc, char* argv[])
         std::string option = std::string(argv[1]);
         if (option == "e") {
             KalousedHash kh(argv[2]);
-            std::cout << "Make sure to annotate the MD5 and DO NOT LOSE IT!" << std::endl;
-            std::cout << "MD5 : " << kh.getMD5() << std::endl;
+            std::cout << YELLOW_TEXT << "Make sure to save the MD5." << DEFAULT << std::endl;
+            std::cout << "MD5 : " << BLACK_BACK << BLUE_TEXT << kh.getMD5() << DEFAULT << std::endl;
             kh.encrypt(argv[3]);
-            std::cout << "Successfully performed!" << std::endl;
-            std::cout << "Khash saved in the file '" << argv[2] << "'." << std::endl;
+            std::cout << GREEN_TEXT << "Successfully performed!" << DEFAULT << std::endl;
+            std::cout << GREEN_TEXT << "Khash saved in the file '" << argv[2] << "'." << DEFAULT << std::endl;
         } else if (option == "r") {
             std::string fName = argv[2];
             std::string mSum = argv[3];
             KalousedHash::recover(fName, mSum);
-            std::cout << "Successfully performed!" << std::endl;
+            std::cout << GREEN_TEXT << "Successfully performed!" << DEFAULT << std::endl;
+            std::cout << GREEN_TEXT << "Original file saved in'" << (fName + "_out") << "' if your hash was correct." << DEFAULT << std::endl;
         } else {
-            std::cout << "Invalid option '" << option << "'.";
+            std::cout << RED_TEXT << "Invalid option '" << option << "'." DEFAULT << std::endl;
             return 1;
         }
         return 0;

@@ -202,7 +202,7 @@ public:
             auto mapIt = inverseHexMap.find(c);
             outputBase64 += mapIt != inverseHexMap.end() ? mapIt->second : c;
         }
-        
+
         StringUtils::base64_decode(outputBase64, filebase64 + "_out");
     }
 
