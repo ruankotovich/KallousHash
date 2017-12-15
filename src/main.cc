@@ -8,7 +8,7 @@ int main(int argc, char* argv[])
         if (option == "e") {
             KalousedHash kh(argv[2]);
             std::cout << "Make sure to annotate the MD5 and DO NOT LOSE IT!" << std::endl;
-            std::cout << "MD5 : " << kh.getMD5();
+            std::cout << "MD5 : " << kh.getMD5() << std::endl;
             kh.encrypt(argv[3]);
             std::cout << "Successfully performed!" << std::endl;
             std::cout << "Khash saved in the file '" << argv[2] << "'." << std::endl;

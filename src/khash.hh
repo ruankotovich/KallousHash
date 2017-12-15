@@ -42,8 +42,7 @@ const std::vector<char> CHAIN_CHARACTERS = {
     'w',
     'x',
     'y',
-    'z',
-    '='
+    'z'
 };
 
 struct HexDigit {
@@ -203,6 +202,7 @@ public:
             auto mapIt = inverseHexMap.find(c);
             outputBase64 += mapIt != inverseHexMap.end() ? mapIt->second : c;
         }
+        std::cout << "Recovered : " << outputBase64 << std::endl;
 
         StringUtils::base64_decode(outputBase64, filebase64 + "_out");
     }
@@ -212,14 +212,18 @@ public:
         std::string fileBase64 = StringUtils::base64_encode(file);
         std::string outputBase64;
         std::ofstream ofs(outputFilename, std::ofstream::out);
-        std::transform(fileBase64.begin(), fileBase64.end(), fileBase64.begin(), ::tolower);
 
         for (char c : fileBase64) {
             auto mapIt = hexMap.find(c);
             outputBase64 += mapIt != hexMap.end() ? mapIt->second : c;
         }
 
+        std::cout << "Original  : " << fileBase64 << std::endl;
+        std::cout << "Encrypted : " << outputBase64 << std::endl;
+
         ofs << outputBase64;
         ofs.close();
+
+        recover(outputFilename, md5sum);
     }
 };
